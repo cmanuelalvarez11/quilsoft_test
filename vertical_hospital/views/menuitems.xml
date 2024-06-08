@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- app items -->
+
+        <menuitem name="Vertical Hospital"
+                  web_icon="vertical_hospital,static/description/hospital.png"
+                  id="menu_vertical_hospital_root"
+                  sequence="2"/>
+    </data>
+</odoo>

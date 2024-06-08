@@ -1,0 +1,31 @@
+<odoo>
+    <record id="report_patient_action" model="ir.actions.report">
+        <field name="name">Patients Report</field>
+        <field name="model">hospital.patients</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">vertical_hospital.audit_report_template</field>
+    </record>
+
+    <template id="audit_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Sequence</th>
+                            <th>Name and lastname</th>
+                            <th>DNI</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><span t-esc="doc.sequence"/></td>
+                            <td class="text-center"><span t-esc="doc.name"/></td>
+                            <td class="text-center"><span t-esc="doc.dni"/></td>
+                            <td class="text-center"><span t-esc="doc.state"/></td>
+                        </tr>
+                    </table>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

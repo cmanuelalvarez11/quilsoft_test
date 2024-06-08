@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hospital_patients_tree_view" model="ir.ui.view">
+            <field name="name">hospital.patients.tree.view</field>
+            <field name="model">hospital.patients</field>
+            <field name="arch" type="xml">
+                <tree string="Patients">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="dni"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hospital_patients_form_view" model="ir.ui.view">
+            <field name="name">hospital.patients.form.view</field>
+            <field name="model">hospital.patients</field>
+            <field name="arch" type="xml">
+                <form string="Patient">
+                    <header>
+                        <field name="state" widget="statusbar" options="{'clickable' : 1}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="sequence"/>
+                                <field name="name"/>
+                                <field name="dni"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="update_datetime"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="treatment_ids" options="{'no_create': True}">
+                                <tree>
+                                    <field name="treatment_code"/>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="hospital_patients_action" model="ir.actions.act_window">
+            <field name="name">Patients</field>
+            <field name="res_model">hospital.patients</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="hospital_patients_tree_view"/>
+            <field name="help" type="html">
+                <p>
+
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_hospital_patients"
+                  parent="vertical_hospital.menu_vertical_hospital_root"
+                  action="hospital_patients_action"
+                  sequence="1"
+                  name="Patients"/>
+
+    </data>
+</odoo>
